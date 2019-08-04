@@ -6,17 +6,6 @@ export default [
     input: "./client/script/main.ts",
     plugins: [
       typescript(),
-    ],
-    output: {
-      file: "build/dist/main.js",
-      format: "iife",
-      sourcemap: true,
-    }
-  },
-  {
-    input: "./client/script/main.ts",
-    plugins: [
-      typescript(),
       minify(),
     ],
     output: {

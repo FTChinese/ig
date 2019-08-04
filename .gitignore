@@ -63,3 +63,4 @@ _docs/**/*.png
 _docs/build
 build
 dist
+public

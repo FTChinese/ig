@@ -1,0 +1,27 @@
+{% extends "jpmorgan/layout-main.html" %}
+
+{% block main %}
+
+<div class="row">
+  <div class="col-12 col-lg-8 mb-4">
+    {% block content %}{% endblock %}
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <div class="embed-responsive embed-responsive-16by9">
+      <a class="embed-responsive-item"
+        href="{{pitch.link}}"
+        target="_blank">
+        <img src="{{pitch.imageUrl}}" 
+          width="100%" 
+          alt=""/>
+      </a>
+    </div>
+    <div class="ftc-aside">
+      {% markdown "jpmorgan/partials/aside-pitch.md" %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

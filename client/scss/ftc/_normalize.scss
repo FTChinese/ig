@@ -1,0 +1,20 @@
+body {
+  font-family: $ftc-font-family;
+  background-color: $color-paper;
+}
+.page-content {
+  min-height: $ftc-body-min-height;
+}
+table caption {
+  caption-side: top;
+}
+a {
+  color: $color-teal;
+  &:hover {
+    color: $color-black70;
+  }
+}
+p {
+  font-size: 18px;
+  line-height: 1.7;
+}

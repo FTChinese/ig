@@ -4,7 +4,11 @@
   "description": "Interactive Graphics",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "postversion": "git push && git push --tags",
+    "build-js": "rollup -c",
+    "build-css": "node-sass --output-style=compressed --source-map=build/production --include-path=node_modules/bootstrap client/scss/main.scss build/production/main.css",
+    "inline": "node ./util/inline.js"
   },
   "author": "weiguo.ni",
   "license": "MIT",
@@ -22,11 +26,18 @@
     "koa-logger": "^3.2.1",
     "koa-session": "^5.12.2",
     "koa-static": "^5.0.0",
+    "marked": "^0.7.0",
+    "nodemon": "^1.19.1",
     "nunjucks": "^3.2.0",
+    "nunjucks-markdown": "^2.0.1",
+    "pm2": "^3.5.1",
     "rollup": "^1.18.0",
     "rollup-plugin-babel-minify": "^9.0.0",
     "rollup-plugin-typescript": "^1.0.1",
     "tslib": "^1.10.0",
     "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0"
   }
 }

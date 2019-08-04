@@ -7,13 +7,39 @@ const sourcemaps = require('gulp-sourcemaps');
 
 const tsProject = ts.createProject("tsconfig.json");
 
-const tsOutDir = "build/js";
-const jsInputFile = "build/js/main.js";
+/**
+ * Gulp tasks is only used for development.
+ * To build for production, use Makefile or `npm run`
+ * 
+ * Build directory structrure
+ * 
+ * build/
+ * |--- js/
+ * |--- dist
+ * |    └--- main.js
+ * |--- dev/
+ * |    |--- script/
+ * |    |    └---- main.js
+ * |    └--- style/
+ * |         └---- main.css
+ * └--- production/
+ *      |--- main.js
+ *      └--- main.css
+ */
+// Output directory of typescript
+const tsOutDir = "build/tsout";
+// Input file for rollup
+const jsInputFile = "build/tsout/main.js";
+// rollup output file
 const jsOutFile = "build/dev/script/main.js";
+// node-sass output directory.
 const cssOutDir = "build/dev/style";
 
 /**
  * @description Compile TypeScript to ES5
+ * Compiles typescript sources specified in tsconfig.json `client/script/*`
+ * to vanilla JS file under `build/js`.
+ * The output are not linked into a single file.
  */
 function compileTs() {
   return tsProject.src()
@@ -23,6 +49,9 @@ function compileTs() {
 
 /**
  * @description Bundle JS to a single file.
+ * After typescript is compiled into vanilla JS, this function links
+ * the main output file `build/js/main.js` into a single file 
+ * `build/dev/script/main.js`
  */
 async function linkJs() {
   const bundle = await rollup.rollup({
@@ -48,9 +77,9 @@ async function linkJs() {
  * @description Compile ts and bundle js.
  * The generated js is put into `dist` directory. 
  * It is not minified and is committed to version 
- * controlin case we need to copy + paste the code 
+ * control in case we need to copy + paste the code 
  * somewhere else without the need to waste time 
- * installing all the build toolcharins, 
+ * installing all the build toolchains, 
  * which are often shabby and broken.
  * To get a minified version, run command
  * `npm run build-ts` which will directly compile
@@ -91,10 +120,6 @@ exports.style = buildCss;
 
 exports.watch = gulp.parallel(buildJs, buildCss, function() {
   gulp.watch(["client/script/*.ts"], buildJs);
-  gulp.watch(["client/scss/**/*.scss"], buildCss);
-});
-
-exports.watchCss = gulp.parallel(buildCss, function() {
   gulp.watch(["client/scss/**/*.scss"], buildCss);
 });
 

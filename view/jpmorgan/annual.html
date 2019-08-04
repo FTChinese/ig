@@ -1,0 +1,61 @@
+{% extends "jpmorgan/layout-content.html" %}
+
+{% block content %}
+<div id="slides" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    {% for url in slides %}
+      <li data-target="#slides"
+        data-slide-to="{{loop.index0}}"
+        {% if loop.first %}class="active"{% endif %}></li>
+    {% endfor %}
+  </ol>
+  <div class="carousel-inner">
+    {% for url in slides %}
+    <div class="carousel-item{% if loop.first %} active{% endif %}">
+      <div class="embed-responsive embed-responsive-16by9">
+        <img class="embed-responsive-item d-block w-100" src="/{{url}}" alt="">
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <a class="carousel-control-prev" 
+    href="#slides"
+    role="button"
+    data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden=true></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" 
+    href="#slides" 
+    role="button" 
+    data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+{% if video %}
+<div class="embed-responsive embed-responsive-16by9 mt-4">
+  <div class="embed-responsive-item">
+    <script src="{{video.src}}" type="text/javascript"></script>
+  </div>
+</div>
+{% endif %}
+
+<div class="ftc-top-stories mt-4 mb-4">
+  {% for teaser in teasers %}
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a class="stretched-link" href="{{sitemap.jpmccContent}}/{{teaser.id}}">{{teaser.title}}</a>
+        </h5>
+        <p>{{teaser.lead}}</p>
+      </div>
+      <div class="card-footer text-muted">
+        {{teaser.date}}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "jpmorgan/layout-content.html" %}
+
+{% block content %}
+<div class="ftc-article">
+  {% markdown %}
+    {{ story.content }}
+  {% endmarkdown %}
+</div>
+{% endblock %}

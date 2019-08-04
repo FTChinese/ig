@@ -1,0 +1,38 @@
+@import "ftc/variables";
+@import "ftc/palette";
+@import "scss/functions";
+@import "scss/variables";
+
+@import "scss/mixins/breakpoints";
+
+body {
+  font-family: $ftc-font-family;
+  background-color: $color-paper;
+}
+.page-content {
+  min-height: $ftc-body-min-height;
+}
+table caption {
+  caption-side: top;
+}
+a {
+  color: $color-teal;
+}
+
+a {
+  &:hover {
+    color: $color-black70;
+  }
+}
+
+.alert {
+  border-radius: 0;
+}
+
+@import "ftc/card";
+@import "ftc/header";
+@import "ftc/nav";
+@import "ftc/button";
+@import "ftc/form";
+@import "ftc/footer";
+
