@@ -4,11 +4,8 @@
   "description": "Interactive Graphics",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "postversion": "git push && git push --tags",
-    "build-js": "rollup -c",
-    "build-css": "node-sass --output-style=compressed --source-map=build/production --include-path=node_modules/bootstrap client/scss/main.scss build/production/main.css",
-    "inline": "node ./util/inline.js"
+    "test": "mocha",
+    "postversion": "git push && git push --tags"
   },
   "author": "weiguo.ni",
   "license": "MIT",
@@ -25,12 +22,13 @@
   "devDependencies": {
     "bootstrap": "^4.3.1",
     "bootstrap.native": "^2.0.26",
+    "command-line-args": "^5.1.1",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-typescript": "^5.0.1",
-    "koa-static": "^5.0.0",
     "inline-source": "^7.0.0",
+    "koa-static": "^5.0.0",
     "mocha": "^6.2.0",
     "rollup": "^1.18.0",
     "rollup-plugin-babel-minify": "^9.0.0",
