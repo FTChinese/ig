@@ -118,8 +118,8 @@ function buildCss() {
 exports.script = buildJs;
 exports.style = buildCss;
 
-exports.watch = gulp.parallel(buildJs, buildCss, function() {
-  gulp.watch(["client/script/*.ts"], buildJs);
+exports.watch = gulp.parallel(buildCss, function() {
+  // gulp.watch(["client/script/*.ts"], buildJs);
   gulp.watch(["client/scss/**/*.scss"], buildCss);
 });
 
