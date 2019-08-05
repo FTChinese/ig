@@ -47,27 +47,27 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
     <a class="navbar-brand" 
       href="{{ sitemap.jpmccBase }}">
-      <img src="http://interactive.ftchinese.com/corporate-challenge/images/cc-logo.png">
+      <img height="100%" src="http://interactive.ftchinese.com/corporate-challenge/images/cc-logo.png">
     </a>
     <button class="navbar-toggler" 
       type="button" 
       data-toggle="collapse" 
-      data-target="#navbarText" 
+      data-target="#navbarSocialShare" 
       aria-controls="navbarText" 
       aria-expanded="false" 
       aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbarSocialShare">
       <ul class="navbar-nav ml-auto">
         {% for share in socialShare %}
-          <li class="nav-item ftc-share__{{share.id}}">
-            <a class="nav-link" 
+          <li class="nav-item">
+            <a class="nav-link ftc-share__{{share.id}}" 
               href="{{share.href}}" 
               target="_blank"
               title="分享到{{share.name}}">

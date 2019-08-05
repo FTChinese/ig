@@ -2,12 +2,96 @@
 @import "ftc/palette.scss";
 @import "ftc/mixins.scss";
 @import "ftc/normalize.scss";
+@import "ftc/button.scss";
 
-// @import "ftc-share/main";
-// @import "ftc-icons/main";
+$color-wechat: #609700;
+$color-weibo: #e6162d;
+$color-linkedin: #0977b6;
+$color-facebook: #3c5a99;
+$color-twitter: #6aa9e0;
+
+$ftc-header-height: 60px; 
+$share-icon-size: 24px;
 
 .navbar {
-  height: 60px;
+  background-color: rgb(46, 135, 183);
+
+  .nav-item {
+    margin-left: 0.5rem;
+  }
+  .nav-link {
+    border-radius: 50%;
+    padding: 4px !important;
+
+    &:before {
+      content: '';
+      display: block;
+      width: $share-icon-size;
+      height: $share-icon-size;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      position: relative;
+    }
+
+    i {
+      position: absolute;
+      clip: rect(0 0 0 0);
+      margin: -1px;
+      border: 0;
+      overflow: hidden;
+      padding: 0;
+      width: 1px;
+      height: 1px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.navbar-brand {
+  height: $ftc-header-height;
+  padding: 0;
+  img {
+    object-fit: contain;
+  }
+}
+
+.ftc-share__wechat {
+  background-color: $color-wechat;
+
+  &::before {
+    background-image: url("http://interactive.ftchinese.com/social-images/default/wechat.svg");
+  }
+}
+
+.ftc-share__weibo {
+  background-color: $color-weibo;
+  &::before {
+    background-image: url("http://interactive.ftchinese.com/social-images/default/weibo.svg");
+  }
+  
+}
+
+.ftc-share__linkedin {
+  background-color: $color-linkedin;
+  &::before {
+    background-image: url("http://interactive.ftchinese.com/social-images/default/linkedin.svg");
+  }
+}
+
+.ftc-share__facebook {
+  background-color: $color-facebook;
+
+  &::before {
+    background-image: url("http://interactive.ftchinese.com/social-images/default/facebook.svg");
+  }
+}
+
+.ftc-share__twitter {
+  background-color: $color-twitter;
+  &::before {
+    background-image: url("http://interactive.ftchinese.com/social-images/default/twitter.svg");
+  }
 }
 
 .embed-responsive {
@@ -43,33 +127,10 @@
   }
 }
 
-.article__subheading {
-	font-size: 20px;
-}
-
-.article__time-byline {
-	font-size: 16px;
-	color: $color-black70;
-}
-
-.article__byline {
-	margin: 0;
-	padding: 0;
-	font-size: inherit;
-	display: inline-block;
-}
-
-.article__timestamp {
-	margin: 0;
-	padding: 0 0 0 10px;
-	font-size: inherit;
-	display: inline-block;
-}
-
 .ftc-aside {
 	background-color: $color-black5;
 	
-	h5, p, ul {
+	h5, h6, p, ul {
 		margin: 0;
 		padding: 10px;
 	}
@@ -104,4 +165,5 @@
     background-color: $color-black5;
   }
 }
+
 @import "ftc/footer";
