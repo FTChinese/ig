@@ -13,7 +13,7 @@
     {% for url in slides %}
     <div class="carousel-item{% if loop.first %} active{% endif %}">
       <div class="embed-responsive embed-responsive-16by9">
-        <img class="embed-responsive-item d-block w-100" src="/{{url}}" alt="">
+        <img class="embed-responsive-item d-block w-100" src="{{ sitemap.imgPrefix }}/{{url}}" alt="">
       </div>
     </div>
     {% endfor %}
@@ -48,7 +48,7 @@
     <div class="card mb-4">
       <div class="card-body">
         <h5 class="card-title">
-          <a class="stretched-link" href="{{sitemap.jpmccContent}}/{{teaser.id}}">{{teaser.title}}</a>
+          <a class="stretched-link" href="{{sitemap.content}}/{{teaser.id}}">{{teaser.title}}</a>
         </h5>
         <p>{{teaser.lead}}</p>
       </div>

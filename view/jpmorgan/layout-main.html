@@ -50,8 +50,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
     <a class="navbar-brand" 
-      href="{{ sitemap.jpmccBase }}">
-      <img height="100%" src="http://interactive.ftchinese.com/corporate-challenge/images/cc-logo.png">
+      href="{{ sitemap.base }}">
+      <img height="100%" src="{{ sitemap.imgPrefix }}/images/cc-logo.png">
     </a>
     <button class="navbar-toggler" 
       type="button" 
@@ -98,12 +98,12 @@
             <div class="card-header">
               <a class="stretched-link"
                 target="_blank"
-                href="{{ sitemap.jpmccGallery }}/{{card.year}}">{{card.title}}</a>
+                href="{{ sitemap.gallery }}/{{card.year}}">{{card.title}}</a>
             </div>
 
             <div class="embed-responsive embed-responsive-4by3">
               <img class="embed-responsive-item" 
-                src="{{card.imageUrl}}"
+                src="{{ sitemap.imgPrefix }}/{{card.imageUrl}}"
                 width="100%">
             </div>
             
