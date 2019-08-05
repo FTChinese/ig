@@ -1,22 +1,15 @@
 cmd_prefix := ./node_modules/.bin
-build_prod := build/production
-scss_input := client/scss/main.scss
-css_output := $(build_prod)/main.css
+out_dir := build/production
+scss_dir := client/scss
 
-.PHONY: server js css inline deploy tslint clean
+.PHONY: jpmcc clean
 server :
 	nodemon index.js
 
-tslint :
-	tslint -c tslint.json -p tsconfig.json 
+jpmcss :
+	$(cmd_prefix)/node-sass --output-style=compressed $(scss_dir)/jpmcc.scss $(out_dir)/jpmcc.css
 
-js : 
-	$(cmd_prefix)/rollup -c
-
-css :
-	$(cmd_prefix)/node-sass --output-style=compressed --source-map=$(build_prod) --include-path=node_modules/bootstrap $(scss_input) $(css_output)
-
-inline : js css
+inline_jpmcc : jpmcss
 	node ./util/inline.js
 
 deploy :
