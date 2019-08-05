@@ -28,8 +28,8 @@ marked.setOptions({
 
 const env = nunjucks.configure(
   [
-    path.resolve(__dirname, '../view'),
-    path.resolve(__dirname, '../client')
+    path.resolve(process.cwd(), 'view'),
+    path.resolve(process.cwd(), 'client')
   ], 
   {
     noCache: process.env.NODE_ENV === 'development',
