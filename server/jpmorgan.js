@@ -28,7 +28,7 @@ router.get("/", async (ctx, next) => {
     summary: homeData.meta.description,
   }).build();
 
-  ctx.body = await render("jpmorgan/home.html", ctx.state);
+  ctx.body = await render("jpmcc/home.html", ctx.state);
 });
 
 router.get("/gallery/:year", async (ctx, next) => {
@@ -50,7 +50,7 @@ router.get("/gallery/:year", async (ctx, next) => {
     summary: gallery.meta.description,
   }).build();
 
-  ctx.body = await render("jpmorgan/annual.html", ctx.state);
+  ctx.body = await render("jpmcc/annual.html", ctx.state);
 });
 
 router.get("/content/:id", async (ctx, next) => {
@@ -71,7 +71,7 @@ router.get("/content/:id", async (ctx, next) => {
     summary: article.meta.description,
   }).build();
 
-  ctx.body = await render("jpmorgan/story.html", ctx.state);
+  ctx.body = await render("jpmcc/story.html", ctx.state);
 })
 
 module.exports = router.routes();
