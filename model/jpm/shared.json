@@ -7,42 +7,42 @@
     {
       "title": "2018",
       "year": 2018,
-      "imageUrl": "/images/thumbs/thumb-2018.jpg"
+      "imageUrl": "images/thumbs/thumb-2018.jpg"
     },
     {
       "title": "2017",
       "year": 2017,
-      "imageUrl": "/images/thumbs/thumb-2017.jpg"
+      "imageUrl": "images/thumbs/thumb-2017.jpg"
     },
     {
       "title": "2016",
       "year": 2016,
-      "imageUrl": "/images/thumbs/thumb-2016.jpg"
+      "imageUrl": "images/thumbs/thumb-2016.jpg"
     },
     {
       "title": "2015",
       "year": 2015,
-      "imageUrl": "/images/thumbs/thumb-2015.jpg"
+      "imageUrl": "images/thumbs/thumb-2015.jpg"
     },
     {
       "title": "2014",
       "year": 2014,
-      "imageUrl": "/images/thumbs/thumb-2014.jpg"
+      "imageUrl": "images/thumbs/thumb-2014.jpg"
     },
     {
       "title": "2013",
       "ratio": "16/15",
-      "imageUrl": "/images/thumbs/thumb-2013.jpg"
+      "imageUrl": "images/thumbs/thumb-2013.jpg"
     },
     {
       "title": "2012",
       "year": 2012,
-      "imageUrl": "/images/thumbs/thumb-2012.jpg"
+      "imageUrl": "images/thumbs/thumb-2012.jpg"
     },
     {
       "title": "2011",
       "year": 2011,
-      "imageUrl": "/images/thumbs/thumb-2011.jpg"
+      "imageUrl": "images/thumbs/thumb-2011.jpg"
     }
   ]
 }
