@@ -1,7 +1,6 @@
 const debug = require("debug")("user:middleware");
 const isProduction = process.env.NODE_ENV === "production"
 const pkg = require("../package.json");
-const sitemap = require("../lib/sitemap");
 
 const {
   matrix,
@@ -17,10 +16,7 @@ exports.env = function () {
       year: new Date().getFullYear(),
       footer: matrix,
       version: pkg.version,
-      
     };
-
-    ctx.state.sitemap = sitemap;
 
     await next();
   }
