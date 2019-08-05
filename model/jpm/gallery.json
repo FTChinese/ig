@@ -5,6 +5,23 @@
       "description": "",
       "ogImageUrl": ""
     },
+    "slides": [
+        "images/2018/1.jpg",
+        "images/2018/2.jpg",
+        "images/2018/3.jpg",
+        "images/2018/4.jpg",
+        "images/2018/5.jpg",
+        "images/2018/6.jpg",
+        "images/2018/7.jpg",
+        "images/2018/8.jpg",
+        "images/2018/9.jpg",
+        "images/2018/10.jpg",
+        "images/2018/11.jpg",
+        "images/2018/12.jpg",
+        "images/2018/13.jpg",
+        "images/2018/14.jpg",
+        "images/2018/15.jpg"
+    ],
     "video": {
       "src": "https://p.bokecc.com/player?vid=8F21840683CFAF2D9C33DC5901307461&siteid=922662811F1A49E9&autoStart=false&width=100%&height=100%&playerid=3571A3BF2AEC8829&playertype=1"
     }
