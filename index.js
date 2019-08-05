@@ -6,7 +6,9 @@ const logger = require('koa-logger');
 
 const boot = require('./util/boot-app');
 
-const sitemap = require("./lib/sitemap");
+const {
+  jpm
+} = require("./lib/sitemap");
 const jpmorgan = require("./server/jpmorgan");
 
 const {
@@ -36,7 +38,7 @@ if (!isProduction) {
 app.use(env());
 app.use(handleErrors());
 
-router.use(sitemap.jpmccBase, jpmorgan);
+router.use(jpm.base, jpmorgan);
 router.use('/__version', version);
 
 app.use(router.routes());

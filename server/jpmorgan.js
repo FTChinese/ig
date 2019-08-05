@@ -2,12 +2,18 @@ const Router = require('koa-router');
 const render = require("../util/render");
 const debug = require("debug")("ig:jpm");
 const SocialShare = require("../lib/social-share");
+const { jpm } = require("../lib/sitemap");
 
 const {
   jpmStore,
 } = require("../model/jpm/store");
 
 const router = new Router();
+
+router.use(async(ctx, next) => {
+  ctx.state.sitemap = jpm;
+  await next();
+});
 
 router.get("/", async (ctx, next) => {
   
@@ -38,6 +44,11 @@ router.get("/gallery/:year", async (ctx, next) => {
   debug("Gallery for year %s: %O", year, gallery);
 
   Object.assign(ctx.state, gallery);
+  ctx.state.socialShare = new SocialShare({
+    title: gallery.meta.title,
+    link: ctx.request.href,
+    summary: gallery.meta.description,
+  }).build();
 
   ctx.body = await render("jpmorgan/annual.html", ctx.state);
 });
@@ -54,6 +65,11 @@ router.get("/content/:id", async (ctx, next) => {
 
   debug("Article: %O", article);
   Object.assign(ctx.state, article);
+  ctx.state.socialShare = new SocialShare({
+    title: article.meta.title,
+    link: ctx.request.href,
+    summary: article.meta.description,
+  }).build();
 
   ctx.body = await render("jpmorgan/story.html", ctx.state);
 })
