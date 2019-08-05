@@ -30,7 +30,7 @@ app.use(logger());
 if (!isProduction) {
   const static = require('koa-static');
   app.use(static(path.resolve(process.cwd(), 'node_modules')));
-  app.use(static(path.resolve(process.cwd(), 'build/dev')));
+  app.use(static(path.resolve(process.cwd(), 'build')));
   app.use(static(path.resolve(process.cwd(), "public")));
 }
 
