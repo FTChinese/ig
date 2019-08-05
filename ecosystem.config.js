@@ -1,5 +1,5 @@
 const path = require('path');
-const interpreter = path.resolve(process.env.HOME, 'n/n/versions/node/11.13.0/bin/node');
+const interpreter = path.resolve(process.env.HOME, '.nvm/versions/node/v12.0.0/bin/node');
 
 /**
 ## Deploy with PM2
@@ -23,24 +23,23 @@ module.exports = {
    */
   apps : [
     {
-      name      : "next-user",
+      name      : "ig",
       script    : "./index.js",
       cwd: __dirname,
       interpreter: interpreter,
       env: {
         NODE_ENV: "development",
-        PORT: 4300,
-        DEBUG: "user*"
+        PORT: 4001,
+        DEBUG: "ig*"
       },
       env_production : {
         NODE_ENV: "production",
-        // URL_PREFIX: "/user",
-        PORT: 4300,
-        DEBUG: "user*"
+        PORT: 4001,
+        DEBUG: "ig*"
       },
       max_restart: 10,
-      error_file: path.resolve(process.env.HOME, 'logs/next-user-err.log'),
-      out_file: path.resolve(process.env.HOME, 'logs/next-user-out.log')
+      error_file: path.resolve(process.env.HOME, 'logs/ig-err.log'),
+      out_file: path.resolve(process.env.HOME, 'logs/ig-out.log')
     }
   ],
   deploy: {
@@ -48,8 +47,8 @@ module.exports = {
       user: "node",
       host: "nodeserver",
       ref: "origin/master",
-      repo: "https://github.com/FTChinese/next-user.git",
-      path: "/home/node/next/next-user",
+      repo: "https://github.com/FTChinese/ig.git",
+      path: "/home/node/next/ig",
       "pre-setup": "node -v",
       "post-setup": "ls -la",
       "pre-deploy-local": "echo 'Begin to deploy'",
