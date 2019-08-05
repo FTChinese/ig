@@ -1,38 +1,28 @@
-const { inlineSource } = require("inline-source");
-const path = require("path");
-const fs = require("fs").promises;
+const commandLineArgs = require("command-line-args");
+const assetsConfig = require("./assets-config");
+const AssetsBuilder = require("./assets-builder");
 
-const script =`<script inline src="build/production/main.js"></script>`
-const style = `<link inline rel="stylesheet" href="build/production/main.css">`
+const optionDefinitions = [
+  {
+    name: "project",
+    alias: "p",
+    type: String,
+  }
+];
 
-async function inlineJs() {
-  const html = await inlineSource(script);
+const options = commandLineArgs(optionDefinitions);
 
-  const dest = path.resolve(__dirname, "../view/assets/script.html");
+const config = assetsConfig[options.project];
 
-  console.log(`Wrting file to ${dest}`);
-
-  await fs.writeFile(dest, html);
-}
-
-async function inlineCss() {
-  const html = await inlineSource(style);
-
-  const dest = path.resolve(__dirname, "../view/assets/style.html");
-
-  console.log(`Writing file to ${dest}`);
-
-  await fs.writeFile(dest, html);
+if (!config) {
+  throw new Error("Please select a project name from assets-config.js");
 }
 
 if (require.main === module) {
-  Promise.all([
-    inlineJs(),
-    inlineCss(),
-  ])
-  .then(() => {
+  new AssetsBuilder(config).build().then(() => {
     console.log("Inline finished");
-  }).catch(err => {
+  })
+  .catch(err => {
     console.error(err);
   });
 }
