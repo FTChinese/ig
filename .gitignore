@@ -64,3 +64,4 @@ _docs/build
 build
 dist
 public
+.DS_Store
