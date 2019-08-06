@@ -138,13 +138,7 @@ class Store {
   /**
    * @typedef {Object} Gallery
    * @property {string} id
-   * @property {Object} meta
-   * @property {string} meta.title
-   * @property {string} meta.description
-   * @property {Object} meta.og
-   * @property {string} meta.og.title
-   * @property {string} meta.og.description
-   * @property {string} meta.og.image
+   * @property {Meta} meta
    * @property {string[]} slides
    * @property {?Object} video
    * @property {string} video.src
