@@ -124,3 +124,14 @@ exports.watch = gulp.parallel(buildCss, function() {
 });
 
 exports.build = gulp.parallel(buildJs, buildCss);
+
+gulp.task('images', function () {
+  return gulp.src('./public/images/**/*.{svg,png,jpg,jpeg,gif}')
+    .pipe(imagemin({
+      progressive: true,
+      interlaced: true,
+      svgoPlugins: [{cleanupIDs: false}],
+      verbose: true
+    }))
+    .pipe(gulp.dest('../ft-interact/corporate-challenge'));
+});
