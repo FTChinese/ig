@@ -12,8 +12,11 @@ jpmcss :
 inline_jpmcc : jpmcss
 	node ./util/inline.js
 
+html: 
+	node ./util/build-html.js
+
 deploy :
 	pm2 deploy ecosystem.config.js production
 
 clean :
-	rm -rf build/*
+	rm -rf build/* && rm -rf public/**/*.html
