@@ -17,7 +17,7 @@ router.use(async(ctx, next) => {
 
 router.get("/", async (ctx, next) => {
   
-  const homeData = jpmStore.buildHome();
+  const homeData = await jpmStore.buildHome();
 
   debug("Home page data: %O", homeData);
 

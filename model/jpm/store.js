@@ -35,7 +35,13 @@ class Store {
    * 
    * @return {Home} 
    */
-  buildHome() {
+  async buildHome() {
+    const absFileName = path.resolve(process.cwd(), `model/jpm/articles/home.md`);
+
+    const content = await fs.readFile(absFileName, "utf8");
+
+    homeData.jumbo.content = content;
+
     return {
       ...homeData,
       ...sharedData,

@@ -34,7 +34,7 @@ const env = {
 };
 
 async function buildHome() {
-  const homeData = jpmStore.buildHome();
+  const homeData = await jpmStore.buildHome();
 
   const socialShare = new SocialShare({
     title: homeData.meta.title,
