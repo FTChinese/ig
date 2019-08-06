@@ -1,5 +1,6 @@
 const path = require('path');
-const interpreter = path.resolve(process.env.HOME, '.nvm/versions/node/v12.0.0/bin/node');
+
+const interpreter = path.resolve(process.env.HOME, './.nvm/versions/node/v12.7.0/bin/node');
 
 /**
 ## Deploy with PM2
