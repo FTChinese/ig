@@ -4,6 +4,8 @@ const rollup = require("rollup");
 let cache;
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+const imagemin = require("gulp-imagemin");
+const buildHtml = require("./util/build-html");
 
 const tsProject = ts.createProject("tsconfig.json");
 
@@ -125,13 +127,24 @@ exports.watch = gulp.parallel(buildCss, function() {
 
 exports.build = gulp.parallel(buildJs, buildCss);
 
-gulp.task('images', function () {
+function minifyImage() {
   return gulp.src('./public/images/**/*.{svg,png,jpg,jpeg,gif}')
-    .pipe(imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{cleanupIDs: false}],
-      verbose: true
-    }))
-    .pipe(gulp.dest('../ft-interact/corporate-challenge'));
-});
+  .pipe(imagemin({
+    progressive: true,
+    interlaced: true,
+    svgoPlugins: [{cleanupIDs: false}],
+    verbose: true
+  }))
+  .pipe(gulp.dest('../ft-interact/corporate-challenge'));
+}
+
+async function html() {
+  await buildHtml();
+
+  return gulp.src("./public/**/*.html")
+  .pipe(gulp.dest("../ft-interact/corporate-challenge"));
+}
+
+exports.images = minifyImage;
+
+exports.deploy = gulp.parallel(html, minifyImage);
