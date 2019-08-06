@@ -135,7 +135,7 @@ function minifyImage() {
     svgoPlugins: [{cleanupIDs: false}],
     verbose: true
   }))
-  .pipe(gulp.dest('../ft-interact/corporate-challenge'));
+  .pipe(gulp.dest('../ft-interact/corporate-challenge/images'));
 }
 
 async function html() {
