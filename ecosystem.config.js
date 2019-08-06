@@ -16,6 +16,10 @@ pm2 deploy ecosystem.config.js <app_name> setup
 ```
 pm2 deploy ecosystemconfig.js <app_name>
 ```
+
+External URL:
+
+http://ig.ftchinese.com
  */
 module.exports = {
   /**
