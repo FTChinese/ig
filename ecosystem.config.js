@@ -45,14 +45,14 @@ module.exports = {
   deploy: {
     "production": {
       user: "node",
-      host: "nodeserver",
+      host: "node16",
       ref: "origin/master",
       repo: "https://github.com/FTChinese/ig.git",
       path: "/home/node/next/ig",
       "pre-setup": "node -v",
       "post-setup": "ls -la",
       "pre-deploy-local": "echo 'Begin to deploy'",
-      "post-deploy": "npm install --production && git stash && pm2 startOrRestart ecosystem.config.js --env production"
+      "post-deploy": "npm install --production && pm2 startOrRestart ecosystem.config.js --env production"
     }
   }
 }
