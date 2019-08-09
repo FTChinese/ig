@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "watch-node": "nodemon dist/server.js",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w"
   },
   "author": "weiguo.ni",
   "license": "MIT",
@@ -21,6 +25,7 @@
     "nunjucks-markdown": "^2.0.1"
   },
   "devDependencies": {
+    "@types/koa": "^2.0.49",
     "bootstrap": "^4.3.1",
     "bootstrap.native": "^2.0.26",
     "command-line-args": "^5.1.1",
@@ -36,6 +41,7 @@
     "rollup": "^1.18.0",
     "rollup-plugin-babel-minify": "^9.0.0",
     "rollup-plugin-typescript": "^1.0.1",
+    "ts-node": "^8.3.0",
     "tslib": "^1.10.0",
     "typescript": "^3.5.3"
   }
