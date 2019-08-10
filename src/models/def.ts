@@ -1,62 +1,68 @@
-interface Meta {
+export interface Meta {
     title: string;
     description: string;
     ogImageUrl: string;
 }
 
-interface Pitch {
+export interface Pitch {
     link: string;
     imageUrl: string;
     video: string;
 }
 
-interface TimelineCard {
+export interface TimelineCard {
     title: string;
-    year: string;
+    year: number;
     imageUrl: string;
 }
 
-interface CommonBlock {
+export interface CommonBlock {
     meta: Meta;
     pitch: Pitch;
     timeline: TimelineCard[];
 }
 
-interface Jumbo {
+export interface Jumbo {
+    id: string;
     title: string;
     lead: string;
     body: string;
 }
 
-interface HomePage extends CommonBlock {
+export interface HomePage extends CommonBlock {
     jumbo: Jumbo;
 }
 
-interface Teaser {
+export interface Teaser {
     id: string;
     year: string;
     date: string;
     order: number;
     title: string;
     lead: string;
-    fileName: string;
 }
 
-interface Video {
+export interface Video {
     src: string;
 }
 
-interface GalleryPage extends CommonBlock {
+export interface Gallery {
+    meta: Meta;
+    slides: string[];
+    video?: Video;    
+}
+
+export interface GalleryPage extends CommonBlock {
     id: string;
     slides: string[];
     video: Video;
     teasers: Teaser[];
 }
 
-interface Story extends Teaser {
-    content: string;
+export interface Story extends Teaser {
+    body: string;
 }
 
-interface ArticlePage extends CommonBlock {
+export interface ArticlePage extends CommonBlock {
     story: Story;
 }

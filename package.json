@@ -14,6 +14,7 @@
   "author": "weiguo.ni",
   "license": "MIT",
   "dependencies": {
+    
     "debug": "^4.1.1",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
@@ -26,6 +27,8 @@
   },
   "devDependencies": {
     "@types/koa": "^2.0.49",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.0.42",
     "bootstrap": "^4.3.1",
     "bootstrap.native": "^2.0.26",
     "command-line-args": "^5.1.1",
