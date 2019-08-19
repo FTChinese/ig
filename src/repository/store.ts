@@ -1,6 +1,9 @@
 import { resolve } from "path";
 import { promises as fs } from "fs";
 
+/**
+ * @description Loads makrdown files
+ */
 export class Store {
 
     private storeDir: string

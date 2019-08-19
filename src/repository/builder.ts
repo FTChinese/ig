@@ -1,13 +1,11 @@
 import { Store } from "./store";
 import {
-    Meta,
     HomePage, 
     Jumbo, 
     Teaser,
     GalleryPage,
-    Video,
     ArticlePage,
-} from "./def";
+} from "../models/jpmcc";
 import homeData from "./home.json";
 import pitchData from "./pitch.json";
 import timelineData from "./timeline.json";
@@ -16,31 +14,10 @@ import galleryData from "./galleries.json";
 
 const store = new Store();
 
-interface Galleries {
-    [index: string]: {
-        meta: Meta;
-        slides: string[],
-        video?: Video;
-    };
-}
-
-
-
-interface Stories {
-    [index: string]: {
-        year: string;
-        date: string;
-        order: number;
-        title: string;
-        lead: string;
-        fileName: string;
-    }
-}
-
-const stories = storyData as Stories;
-const galleries = galleryData as Galleries;
-
 class Builder {
+    /**
+     * @description Date for homepage
+     */
     async homePage(): Promise<HomePage> {
         const content = await store.loadHomeContent();
 
@@ -55,8 +32,14 @@ class Builder {
         }
     }
 
+    /**
+     * @description Article list for a specific year.
+     * Transform the home.json to an array, then
+     * fitler out those not in this year, and order
+     * by `order` field.
+     */
     private teasersOf(year: string): Teaser[] {
-        return Object.entries(stories)
+        return Object.entries(storyData)
             .filter(([key, value]) => {
                 return year == value.year;
             })
@@ -75,12 +58,17 @@ class Builder {
             })
     }
 
+    /**
+     * @description home page for each individual year.
+     */
     galleryOf(year: string): GalleryPage {
-        const gallery = galleries[year];
-        if (!gallery) {
+
+        const galleries = new Map(Object.entries(galleryData))
+
+        if (!galleries.has(year)) {
             return null
         }
-        
+        const gallery = galleries.get(year);
         return {
             meta: gallery.meta,
             pitch: pitchData,
@@ -93,10 +81,12 @@ class Builder {
     }
 
     async articleOf(id: string): Promise<ArticlePage | null> {
-        const story = stories[id];
-        if (!story) {
+        const stories = new Map(Object.entries(storyData));
+        if (!stories.has(id)) {
             return null;
         }
+        const story = stories.get(id);
+        
         if (!story.fileName) {
             return null;
         }
@@ -123,3 +113,5 @@ class Builder {
         }
     }
 }
+
+export const contentBuilder = new Builder();
