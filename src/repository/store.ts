@@ -4,13 +4,13 @@ import { promises as fs } from "fs";
 /**
  * @description Loads makrdown files
  */
-export class Store {
+export class JPCCStore {
 
     private storeDir: string
     private homeContentFile: string
 
     constructor() {
-        this.storeDir = resolve(process.cwd(), "../../data/jpmcc/articles");
+        this.storeDir = resolve(process.cwd(), "data/jpm/articles");
 
         this.homeContentFile = resolve(this.storeDir, "home.md");
     }
@@ -25,3 +25,5 @@ export class Store {
         return fs.readFile(absName, "utf8");
     }
 }
+
+export const jpccStore = new JPCCStore();

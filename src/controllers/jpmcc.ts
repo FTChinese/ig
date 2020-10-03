@@ -4,6 +4,7 @@ const debug = require("debug")("ig:jpm");
 import { ShareBuilder } from "../models/social-share";
 import { jpmMap } from "../models/sitemap";
 import { contentBuilder } from "../repository/builder";
+import { buildJPCCHomePage } from "../pages/jpcc-home";
 
 const router = new Router();
 
@@ -13,7 +14,7 @@ router.use(async(ctx, next) => {
 });
 
 router.get("/", async(ctx, next) => {
-    const homeData = await contentBuilder.homePage();
+    const homeData = await buildJPCCHomePage();
 
     Object.assign(ctx.state, homeData);
     ctx.state.socialShare = new ShareBuilder({

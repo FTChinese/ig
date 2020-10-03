@@ -1,4 +1,4 @@
-import { Store } from "./store";
+import { JPCCStore } from "./store";
 import {
     HomePage, 
     Jumbo, 
@@ -12,7 +12,7 @@ import timelineData from "./timeline.json";
 import storyData from "./stories.json";
 import galleryData from "./galleries.json";
 
-const store = new Store();
+const store = new JPCCStore();
 
 class Builder {
     /**
