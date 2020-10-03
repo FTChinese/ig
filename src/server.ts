@@ -7,8 +7,8 @@ import serve from "koa-static";
 const pkg = require("../package.json");
 
 import {
-    env,
-    handleErrors,
+  env,
+  handleErrors,
 } from "./controllers/middleware";
 import { jpmMap } from "./models/sitemap";
 import jpmcc from "./controllers/jpmcc";
@@ -19,16 +19,16 @@ const router = new Router();
 app.proxy = true;
 
 if (!isProduction) {
-    app.use(
-        serve(
-            resolve(__dirname, "../node_modules")
-        )
-    );
-    app.use(
-        serve(
-            resolve(__dirname, "../build/dev")
-        )
-    );
+  app.use(
+    serve(
+      resolve(__dirname, "../node_modules")
+    )
+  );
+  app.use(
+    serve(
+      resolve(__dirname, "../build/dev")
+    )
+  );
 }
 app.use(logger());
 
@@ -42,21 +42,21 @@ app.use(router.routes());
 console.log(router.stack.map(layer => layer.path));
 
 async function bootUp(app: Koa, port: number = 3000, appName: string = pkg.name) {
-    console.log(`Booting ${appName}`);
+  console.log(`Booting ${appName}`);
 
-    const server = app.listen(port);
+  const server = app.listen(port);
 
-    server.on("error", err => {
-        console.error("Server error: %O", err);
-    });
+  server.on("error", err => {
+    console.error("Server error: %O", err);
+  });
 
-    server.on("listening", () => {
-        console.log("%s running on port %s", appName, server.address());
-    });
+  server.on("listening", () => {
+    console.log("%s running on port %s", appName, server.address());
+  });
 }
 
 bootUp(app, Number.parseInt(process.env.PORT))
-    .catch(err => {
-        console.error("Boot error: %O", err);
-    });
+  .catch(err => {
+    console.error("Boot error: %O", err);
+  });
 
