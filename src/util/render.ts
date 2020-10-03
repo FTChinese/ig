@@ -5,7 +5,7 @@ import marked from "marked";
 
 const env = configure(
     [
-        resolve(__dirname, "../../views"),
+        resolve(__dirname, "../../view"),
         resolve(__dirname, "../../client"),
     ],
     {
