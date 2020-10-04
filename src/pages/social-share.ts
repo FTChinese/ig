@@ -6,7 +6,7 @@ interface ShareContent {
     summary: string;
 }
 
-interface ShareLink {
+export interface ShareLink {
     id: string;
     name: string;
     href: string;

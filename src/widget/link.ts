@@ -1,7 +1,8 @@
 export interface Link {
-  text: string;
+  text?: string;
   href: string;
   external?: boolean;
+  imgSrc?: string;
 }
 
 export interface Image {

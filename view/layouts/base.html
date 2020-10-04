@@ -4,31 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  {% set iconUrl = "http://interactive.ftchinese.com/favicons" %}
+
+{% if meta %}
+  <meta name="copyright" content="FT中文网">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="FTC Interactive Graphics"> 
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <meta property="og:title" content="{{pageTitle}}"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:image" content="{{meta.ogImageUrl}}"/>
+  <meta property="og:url" content="{{meta.ogUrl}}">
+  <meta property="og:description" content="{{meta.description}}" />
+  <meta property="og:locale" content="zh-Hans">
+  <meta property="og:site_name" content="FT中文网">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@FTChinese">
+  <meta name="twitter:title" content="{{meta.title}}">
+  <meta name="twitter:description" content="{{meta.description}}">
+  <meta name="twitter:image" content="{{meta.ogImageUrl}}">
+{% endif %}
+
   <link rel="apple-touch-icon" sizes="180x180" href="{{iconUrl}}/apple-touch-icon-180x180.png">
   <link rel="apple-touch-icon" sizes="152x152" href="{{iconUrl}}/apple-touch-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="120x120" href="{{iconUrl}}/apple-touch-icon-120x120.png">
   <link rel="apple-touch-icon" sizes="76x76" href="{{iconUrl}}/apple-touch-icon-76x76.png">
   <link href="{{iconUrl}}/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
 
-  <title>{% block title %}{% endblock %} - FT中文网</title>
+  <title>{{ pageTitle }} - FT中文网</title>
   
-  {% if env.isProduction %}
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  {# include "assets/style.html" #}
-
-  {% else %}
-  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="/style/main.css">
-  {% endif %}
-  
+  {% for link in styles.links %}
+    <link href="{{link}}" rel="stylesheet">
+  {% endfor %}
+  {% for incl in styles.includes %}
+    {% include incl %}
+  {% endfor %}
 </head>
 <body>
   <header class="navbar o-header">
     <div class="container">
-      <a class="navbar-brand" href="http://www.ftchinese.com" target="__blank">FT中文网</a>
+      <a class="navbar-brand" 
+        href="{{navBrand.href}}"
+        {% if navBrand.external %}target="__blank"{% endif %}>
+        {% if navBrand.text %}
+          {{ navBrand.text }}
+        {% endif %}
+        {% if navBrand.imgSrc %}
+          <img height="100%" 
+            src="{{navBrand.imgSrc}}">
+        {% endif %}
+      </a>
 
       {% block headerDrawer%}{% endblock %}
+
     </div>
   </header>
 
@@ -36,22 +65,15 @@
 
   <main class="page-content" role="main">
     <div class="container">
-      
-      {% if errors.message %}
-        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-          <span>{{errors.message}}</span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-      {% endif %}
-
       {% block main %}{% endblock %}
     </div>
   </main>
 
+  {% block bottomBanner %}{% endblock %}
+
   <footer class="o-footer o-footer--theme-dark">
     <div class="container">
+      {% if env.footer %}
       <div class="row">
         {% for group in env.footer %}
           <div class="col-6 col-md-3 col-lg-2">
@@ -68,27 +90,29 @@
           </div>
         {% endfor %}		
       </div>
+      {% endif %}
 
       <div class="o-footer__copyright">
         <small>
-          © FT中文网 {{env.year}}.
-          <abbr title="Financial Times" aria-label="F T">FT</abbr> and ‘Financial Times’ are trademarks of The Financial Times Ltd.
+          {{ copyright.owner}}
+
+          {% if copyright.isFT %}
+            <abbr title="Financial Times" aria-label="F T">FT</abbr> and ‘Financial Times’ are trademarks of The Financial Times Ltd.
+          {% endif %}
         </small>
       </div>
       <div class="text-muted pb-3">
-        <small>v{{env.version}}</small>
+        <small>v{{appVersion}}</small>
       </div>
     </div>
   </footer>
 
-  
-  {% if env.isProduction %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.23/bootstrap-native-v4.min.js"></script>
-  {# include "assets/script.html" #}
+  {% for url in scripts.srcUrls %}
+    <script src="{{url}}"></script>
+  {% endfor %}
 
-  {% else %}
-  <script src="/bootstrap.native/dist/bootstrap-native-v4.js"></script>
-  <script src="/script/main.js"></script>
-  {% endif %}
+  {% for incl in scripts.includes %}
+    {% include incl %}
+  {% endfor %}
 </body>
 </html>

@@ -7,8 +7,8 @@
     "test": "mocha",
     "postversion": "git push && git push --tags",
     "clean": "rm -rf build/*",
-    "watch-css": "sass --watch --style=expanded --load-path=node_modules/bootstrap client/scss/main.scss build/style/main.css",
-    "build-css": "sass --style=compressed --load-path=node_modules/bootstrap client/scss/main.scss build/style/main.css",
+    "watch-css": "sass --watch --style=expanded --load-path=node_modules/bootstrap client/scss/:build/style/",
+    "build-css": "sass --style=compressed --load-path=node_modules/bootstrap client/scss/:build/style/",
     "build-ts": "tsc -p client --outDir build/ts-out",
     "watch-ts": "tsc -p client -w --outDir build/ts-out",
     "build-js": "rollup -c client/rollup.config.js",
@@ -31,6 +31,7 @@
     "toml": "^3.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
     "@types/koa": "^2.11.4",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-logger": "^3.1.1",
@@ -42,6 +43,7 @@
     "@types/nunjucks": "^3.1.3",
     "bootstrap": "^4.5.2",
     "bootstrap.native": "^3.0.13",
+    "command-line-args": "^5.1.1",
     "inline-source": "^7.2.0",
     "jest": "^26.4.2",
     "koa-static": "^5.0.0",

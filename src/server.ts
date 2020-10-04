@@ -7,10 +7,9 @@ import serve from "koa-static";
 const pkg = require("../package.json");
 
 import {
-  env,
   handleErrors,
 } from "./controllers/middleware";
-import { jpmMap } from "./models/sitemap";
+import { jpmMap } from "./config/sitemap";
 import jpmcc from "./controllers/jpmcc";
 
 const app = new Koa();
@@ -26,13 +25,12 @@ if (!isProduction) {
   );
   app.use(
     serve(
-      resolve(__dirname, "../build/dev")
+      resolve(__dirname, "../build")
     )
   );
 }
 app.use(logger());
 
-app.use(env());
 app.use(handleErrors());
 
 router.use(jpmMap.base, jpmcc);

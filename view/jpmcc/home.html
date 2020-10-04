@@ -1,14 +1,14 @@
 {% extends "jpmcc/layout-main.html" %}
 
-{% block main %}
+{% block content %}
 
 <div class="row">
   <div class="col-12 col-lg-6 mb-4">
     <div class="embed-responsive embed-responsive-16by9">
       <a class="embed-responsive-item"
-        href="{{bannerImage.href}}"
+        href="{{pitch.link}}"
         target="_blank">
-        <img src="{{ bannerImage.src }}" 
+        <img src="{{ pitch.imageUrl }}" 
           width="100%">
       </a>
     </div>
@@ -17,7 +17,7 @@
   <div class="col-12 col-lg-6 mb-4">
     <div class="embed-responsive embed-responsive-16by9">
       <div class="embed-responsive-item">
-        <script src="{{bannerVideo}}" type="text/javascript"></script>
+        <script src="{{pitch.video}}" type="text/javascript"></script>
       </div>
     </div>
   </div>

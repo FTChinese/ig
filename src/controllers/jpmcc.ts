@@ -1,29 +1,16 @@
 import Router from "koa-router";
 import render from "../util/render";
 const debug = require("debug")("ig:jpm");
-import { ShareBuilder } from "../models/social-share";
-import { jpmMap } from "../models/sitemap";
+import { ShareBuilder } from "../pages/social-share";
 import { contentBuilder } from "../repository/builder";
-import { buildJPCCHomePage } from "../pages/jpcc-home";
+import { buildHomePage } from "../pages/jpmcc";
 
 const router = new Router();
 
-router.use(async(ctx, next) => {
-    ctx.state.sitemap = jpmMap;
-    await next();
-});
-
 router.get("/", async(ctx, next) => {
-    const homeData = await buildJPCCHomePage();
+    const homeData = await buildHomePage(ctx.request.href);
 
-    Object.assign(ctx.state, homeData);
-    ctx.state.socialShare = new ShareBuilder({
-        title: homeData.meta.title,
-        link: ctx.request.href,
-        summary: homeData.meta.description,
-    }).build();
-
-    ctx.body = await render("jpmcc/home.html", ctx.state);
+    ctx.body = await render("jpmcc/home.html", homeData);
 });
 
 router.get("/gallery/:year", async(ctx, next) => {
