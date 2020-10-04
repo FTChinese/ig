@@ -1,4 +1,4 @@
-import { isProduction } from "./models/viper";
+import { viper } from "./config/viper";
 import { resolve } from "path";
 import Koa from "koa";
 import Router from "koa-router";
@@ -17,7 +17,7 @@ const router = new Router();
 
 app.proxy = true;
 
-if (!isProduction) {
+if (!viper.isProduction) {
   app.use(
     serve(
       resolve(__dirname, "../node_modules")

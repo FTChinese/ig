@@ -1,6 +1,6 @@
 {% extends "jpmcc/layout-main.html" %}
 
-{% block content %}
+{% block main %}
 
 <div class="row">
   <div class="col-12 col-lg-6 mb-4">
@@ -23,14 +23,13 @@
   </div>
 </div>
 
-
 <div class="jumbotron">
-  <h2 class="display-4">{{jumbo.title}}</h2>
-  <p class="lead">{{jumbo.lead}}</p>
+  <h2 class="display-4">2019摩根大通企业竞跑赛将移师上海国际音乐村</h2>
+  <p class="lead">赛事将于11月14日星期四举行，企业报名现已开放</p>
+  
   <hr class="my-4">
-  {% markdown %}
-    {{jumbo.body}}
-  {% endmarkdown %}
+
+  {% markdown "jpmcc/articles/home.md" %}
 </div>
 
 {% endblock %}

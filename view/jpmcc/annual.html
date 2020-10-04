@@ -38,7 +38,7 @@
 {% if video %}
 <div class="embed-responsive embed-responsive-16by9 mt-4">
   <div class="embed-responsive-item">
-    <script src="{{video.src}}" type="text/javascript"></script>
+    <script src="{{video}}" type="text/javascript"></script>
   </div>
 </div>
 {% endif %}
@@ -48,7 +48,7 @@
     <div class="card mb-4">
       <div class="card-body">
         <h5 class="card-title">
-          <a class="stretched-link" href="{{sitemap.content}}/{{teaser.id}}{{sitemap.suffix}}">{{teaser.title}}</a>
+          <a class="stretched-link" href="{{ teaser.href }}">{{teaser.title}}</a>
         </h5>
         <p>{{teaser.lead}}</p>
       </div>

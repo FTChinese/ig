@@ -1,8 +1,9 @@
 import { Link } from "../widget/link";
-import { jpccStore } from "../repository/store";
 import { Layout, LayoutBuilder } from "./layout-page";
 import { ShareBuilder, ShareLink } from "./social-share";
 import { jpmMap } from "../config/sitemap";
+import { Gallery, getGallery } from "../repository/jpm-gallery";
+import { getTeasers, Teaser, Story, findTeaser } from "../repository/jmp-teaser";
 
 interface PageMeta {
   description: string;
@@ -29,12 +30,6 @@ interface JPCCShared {
 type JPCCHomePage = Layout & JPCCShared & {
   meta: PageMeta;
   socialShare: ShareLink[];
-  jumbo: {
-    id: string;
-    title: string;
-    lead: string;
-    body: string;
-  }
 }
 
 function buildSharedBlock(): JPCCShared {
@@ -54,8 +49,7 @@ function buildSharedBlock(): JPCCShared {
   }
 }
 
-export async function buildHomePage(href: string): Promise<JPCCHomePage> {
-  const article = await jpccStore.loadHomeContent();
+export function buildHomePage(href: string): JPCCHomePage {
   
   const title = "摩根大通企业竞跑赛2019";
 
@@ -73,11 +67,42 @@ export async function buildHomePage(href: string): Promise<JPCCHomePage> {
       link: href,
       summary: metaDesc,
     }).build(),
-    jumbo: {
-      id: "df5744d7d4a62ca04fabf569",
-      title: "2019摩根大通企业竞跑赛将移师上海国际音乐村",
-      lead: "赛事将于11月14日星期四举行，企业报名现已开放",
-      body: article,
-    },
   };
+}
+
+type GalleryPage = Layout & JPCCShared & Gallery & {
+  teasers: Teaser[]
+}
+
+export function buildGalleryPage(year: string): GalleryPage | undefined {
+  const gallery = getGallery(year);
+  if (!gallery) {
+    return undefined;
+  }
+
+  const title = `摩根大通企业竞跑赛${year}`;
+
+  return {
+    ...LayoutBuilder.jpmcc(title),
+    ...buildSharedBlock(),
+    ...gallery,
+    teasers: getTeasers(year)
+  }
+}
+
+type StoryPage = Layout & JPCCShared & {
+  teaser: Teaser
+}
+
+export function buildStoryPage(id: string): StoryPage | undefined {
+  const teaser = findTeaser(id);
+  if (!teaser) {
+    return undefined;
+  }
+
+  return {
+    ...LayoutBuilder.jpmcc(teaser.title),
+    ...buildSharedBlock(),
+    teaser,
+  }
 }

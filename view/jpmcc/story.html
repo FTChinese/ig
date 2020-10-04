@@ -2,8 +2,6 @@
 
 {% block content %}
 <div class="ftc-article">
-  {% markdown %}
-    {{ story.body }}
-  {% endmarkdown %}
+  {% markdown "jpmcc/articles/" + teaser.fileName %}
 </div>
 {% endblock %}

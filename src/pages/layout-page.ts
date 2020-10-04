@@ -97,26 +97,20 @@ export class LayoutBuilder {
       layout.scripts.srcUrls = [
         `https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/${bsNativeVersion}/bootstrap-native-v4.min.js"`
       ];
-
-      layout.navBrand = {
-        href: jpmMap.base,
-        imgSrc: "http://interactive.ftchinese.com/corporate-challenge/images/cc-logo.png"
-      }
-
     } else {
       layout.styles.links = [
         "/bootstrap/dist/css/bootstrap.css",
-        "style/jpmcc.css"
+        "/style/jpmcc.css"
       ];
 
       layout.scripts.srcUrls = [
         "/bootstrap.native/dist/bootstrap-native.js"
       ];
+    }
 
-      layout.navBrand = {
-        href: jpmMap.base,
-        imgSrc: "images/cc-logo.png"
-      }
+    layout.navBrand = {
+      href: jpmMap.base,
+      imgSrc: `${jpmMap.assetsBaseUrl}/images/cc-logo.png`
     }
 
     return layout;
